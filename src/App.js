@@ -15,7 +15,7 @@ function App() {
             const { element, ...rest } = route;
             return <Route key={index} {...rest} element={element} />
           })}
-        </Routes>      
+        </Routes>
       </Container>
     </BrowserRouter>
   );
