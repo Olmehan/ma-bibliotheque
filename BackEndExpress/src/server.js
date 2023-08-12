@@ -1,8 +1,14 @@
 import express from 'express';
 const sql = require("mssql");
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
+
 const mssqlConfig = {
     // user: 'Oleksii',
     user: 'TestUser',
@@ -19,7 +25,7 @@ const mssqlConfig = {
 
 app.get('/hello', (requete, reponce) => reponce.send('Salut !'));
 
-app.get('/', async(requete, reponce) => {
+app.get('/films', async(requete, reponce) => {
     console.log('connexion...');
 
     sql.connect(mssqlConfig, (erreur) => {
