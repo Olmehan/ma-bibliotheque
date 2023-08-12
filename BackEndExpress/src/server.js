@@ -34,16 +34,26 @@ app.get('/films', async(requete, reponce) => {
             console.log(erreur);
         } else {
             console.log("sql query ... demande de donnees ...");
-            const result = sql.query(`select NomFilm as Films, Duree, DatePremiere from [Bibliotheque_films].[dbo].[Films]`, (err, donnees) => {
+            const result = sql.query(`select * from [Bibliotheque_films].[dbo].[Films]`, (err, donnees) => {
                 if(err) console.log(err);
 
                 //reponce
                 var tabl = new Array();
                 for(let i = 0; i < donnees.recordset.length; i++){
-                    var film = donnees.recordset[i].Films;
+                    var film = donnees.recordset[i].NomFilm;
                     var duree = donnees.recordset[i].Duree;
                     var datePremiere = donnees.recordset[i].DatePremiere;
-                    tabl.push({'Film':film, 'Duree':duree, 'Date premiere':datePremiere});
+                    let dateCreation = donnees.recordset[i].DateCreation;
+                    let realisateur = donnees.recordset[i].Realisateur;
+                    let pays = donnees.recordset[i].Pays;
+                    let index = donnees.recordset[i].IdFilm;
+                    tabl.push({'Film':film, 
+                                'Duree':duree, 
+                                'DatePremiere':datePremiere,
+                                'dateCreation':dateCreation,
+                                'realisateur':realisateur,
+                                'pays':pays,
+                                'idFilm':index});
                 }
                 console.log('--Donnees--');
                 console.log(tabl);
