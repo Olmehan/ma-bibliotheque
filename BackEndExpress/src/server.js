@@ -63,7 +63,7 @@ app.get('/films', async(requete, reponce) => {
     })
 })
 
-app.get('/films', async(requete, reponce) => {
+app.get('/acteurs', async(requete, reponce) => {
     console.log("eesaye de connect...");
 
     sql.connect(mssqlConfig, (erreur) => {
@@ -72,14 +72,22 @@ app.get('/films', async(requete, reponce) => {
             console.log(erreur);
         } else {
             console.log("sql query ... demande de donnees ...");
-            const result = sql.query(`select NomFilm as Films from [Bibliotheque_films].[dbo].[Films]`, (err, donnees) => {
+            const result = sql.query(`select * from [Bibliotheque_films].[dbo].[Acteurs]`, (err, donnees) => {
                 if(err) console.log(err);
 
                 //reponce
                 var tabl = new Array();
                 for(let i = 0; i < donnees.recordset.length; i++){
-                    var film = donnees.recordset[i].Films;
-                    tabl.push({'Film':film});
+                    var nom = donnees.recordset[i].NomActeur;
+                    var prenom = donnees.recordset[i].PrenomActeur;
+                    var index = donnees.recordset[i].IdActeur;
+                    var dateNaissance = donnees.recordset[i].DateNaissance;
+                    var dateCreation = donnees.recordset[i].DateCreation;
+                    tabl.push({'nomActeur':nom,
+                                'prenomActeur':prenom,
+                                'idActeur':index,
+                                'dateNaissance':dateNaissance,
+                                'dateCreation':dateCreation});
                 }
                 console.log('--Donnees--');
                 console.log(tabl);
