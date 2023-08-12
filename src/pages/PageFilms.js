@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
+import { FormatDate } from "../components/FormatDate";
 
 export const PageFilms = () => {
     const[listFilms, setListFilms] = useState([]);
@@ -10,7 +11,7 @@ export const PageFilms = () => {
 
     async function getTousLesFilms(){
         const result = await fetch('http://localhost:8000/films');
-        console.log(result);
+        // console.log(result);
         const films = await result.json();
         console.log('Films: ');
         console.log(films);
@@ -28,9 +29,22 @@ export const PageFilms = () => {
                         <th>Film</th>
                         <th>Durée</th>
                         <th>Réalisateur</th>
-                        <th>Date de premiere</th>
+                        <th>Date de sortie</th>
+                        <th>Pays</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {Array.isArray(listFilms) ? listFilms.map((f, index) => (
+                        <tr key={f.idFilm}>
+                            <td>{index + 1}</td>
+                            <td>{f.Film}</td>
+                            <td>{f.Duree}</td>
+                            <td>{f.realisateur}</td>
+                            <td><FormatDate donneesDateTime={f.DatePremiere} /></td>
+                            <td>{f.pays}</td>
+                        </tr>
+                    )):[]}
+                </tbody>
             </Table>
         </Container>
     );
