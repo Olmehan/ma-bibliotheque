@@ -10,8 +10,9 @@ const NavMenu = () => {
                     <Nav className="me-auto">
                         <Nav.Link href="/" className="text-success">Accueil</Nav.Link>
                         <Nav.Link href="/pageFilms" className="text-success">Films</Nav.Link>
-                        {/* <Nav.Link href="">Acteurs</Nav.Link>
-                        <Nav.Link href="">À propos</Nav.Link> */}
+                        <Nav.Link href="/pageActeurs" className="text-success">Acteurs</Nav.Link>
+                        <Nav.Link href="/pageRealisateurs" className="text-success">Réalisateurs</Nav.Link>
+                        {/* <Nav.Link href="" className="float-end">À propos</Nav.Link> */}
                     </Nav>
                 </Navbar.Collapse>
             </Container>
