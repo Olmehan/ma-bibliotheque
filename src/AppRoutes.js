@@ -3,6 +3,7 @@ import { PageAccueil } from './pages/PageAccueil';
 import { PageFilms } from './pages/PageFilms';
 import { PageActeurs } from './pages/PageActeurs';
 import { PageRealisateurs } from './pages/PageRealisateurs';
+import { PageUnFilm } from './pages/PageUnFilm';
 import { Erreur404 } from './pages/Erreur404';
 
 const AppRoutes = [
@@ -21,6 +22,10 @@ const AppRoutes = [
     {
         path: '/pageRealisateurs',
         element: <PageRealisateurs />
+    },
+    {
+        path: '/pageUnFilm/:id',
+        element: <PageUnFilm />
     },
     {
         path: '*',
