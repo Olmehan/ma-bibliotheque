@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { FormatDate } from "../components/FormatDate";
+import { useNavigate } from "react-router-dom";
 
 export const PageFilms = () => {
     const[listFilms, setListFilms] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         getTousLesFilms();
@@ -35,7 +38,7 @@ export const PageFilms = () => {
                 </thead>
                 <tbody>
                     {Array.isArray(listFilms) ? listFilms.map((f, index) => (
-                        <tr key={f.idFilm}>
+                        <tr key={f.idFilm} onClick={() => navigate(`/pageUnFilm/${f.idFilm}`)} style={{cursor: "pointer"}}>
                             <td>{index + 1}</td>
                             <td>{f.Film}</td>
                             <td>{f.Duree}</td>
