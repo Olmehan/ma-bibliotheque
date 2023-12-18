@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:3000/",
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
 
@@ -13,7 +13,7 @@ const mssqlConfig = {
     // user: 'Oleksii',
     user: 'TestUser',
     // user: 'DESKTOP-QV0D28Q\\Oleksii',
-    password: 'test978A',
+    password: 'base135B',
     server: 'localhost',
     options: {
     //     Trusted_Connection: true,
@@ -96,5 +96,32 @@ app.get('/acteurs', async(requete, reponce) => {
         }
     })
 });
+
+app.get('/unfilm/:id', async(requete, reponce) => {    
+    console.log('essaye de connect...');
+    let idUnFilm = requete.params.id;
+
+    sql.connect(mssqlConfig, (erreur) => {
+        if(erreur){
+            console.log('...erreur de connexion...');
+            console.log(erreur);
+        } else {
+            console.log('sql query... demande de donnees un film...');
+            // const requete = new sql.Request();
+            // requete.input(idUnFilm, sql.VarChar, '-- commentee')
+            // requete.query(mssqlRequest, (err, result) => {console.log(result)})
+            const mssqlRequete = `select * from Bibliotheque_films.dbo.Films where IdFilm = '${idUnFilm}'`;
+            // console.log(mssqlRequete);
+            const result = sql.query(mssqlRequete, (err, donnees) => {
+                if(err) console.log(err);
+
+                //reponce
+                // console.log(donnees);
+                reponce.send(donnees.recordset[0]);
+            });
+            // reponce.send(idUnFilm);
+        }
+    })
+})
 
 app.listen(8000, () => console.log('Écoute le port 8000'));
