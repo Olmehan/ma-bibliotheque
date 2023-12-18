@@ -10,7 +10,7 @@ export const PageActeurs = () => {
     }, []);
 
     async function getTousActeurs(){
-        const result = await fetch('http://localhost:8000/acteurs');
+        const result = await fetch('http://localhost:3000/acteurs');
         const acteurs = await result.json();
         console.log('Acteurs: ');
         console.log(acteurs);

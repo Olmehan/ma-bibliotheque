@@ -13,7 +13,7 @@ export const PageFilms = () => {
     }, []);
 
     async function getTousLesFilms(){
-        const result = await fetch('http://localhost:8000/films');
+        const result = await fetch('http://localhost:3000/films');
         // console.log(result);
         const films = await result.json();
         console.log('Films: ');
