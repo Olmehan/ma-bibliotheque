@@ -5,6 +5,7 @@ import { PageActeurs } from './pages/PageActeurs';
 import { PageRealisateurs } from './pages/PageRealisateurs';
 import { PageUnFilm } from './pages/PageUnFilm';
 import { Erreur404 } from './pages/Erreur404';
+import { PageAjouterUnFilmManuel } from './pages/PageAjouterUnFilmManuel';
 
 const AppRoutes = [
     {
@@ -26,6 +27,10 @@ const AppRoutes = [
     {
         path: '/pageUnFilm/:id',
         element: <PageUnFilm />
+    },
+    {
+        path: '/PageAjouterUnFilmManuel',
+        element: <PageAjouterUnFilmManuel />
     },
     {
         path: '*',
