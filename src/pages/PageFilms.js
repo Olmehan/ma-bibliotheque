@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { FormatDate } from "../components/FormatDate";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +24,14 @@ export const PageFilms = () => {
 
     return (
         <Container>
-            <h1>Bienvenue dans la page des films</h1>
+            <Row>
+                <Col xs={9}>
+                    <h1>Bienvenue dans la page des films</h1>
+                </Col>
+                <Col xs={3}>
+                    <Button variant="primary" onClick={() => navigate('/PageAjouterUnFilmManuel')} style={{ marginTop: "0.5em" }} className="float-end">Ajouter un film</Button>
+                </Col>
+            </Row>
             <Table striped bordered>
                 <thead>
                     <tr>
