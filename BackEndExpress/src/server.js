@@ -13,7 +13,7 @@ const mssqlConfig = {
     // user: 'Oleksii',
     user: 'TestUser',
     // user: 'DESKTOP-QV0D28Q\\Oleksii',
-    password: 'base135B',
+    password: 'User5678',
     server: 'localhost',
     options: {
     //     Trusted_Connection: true,
